@@ -1,0 +1,91 @@
+# CLS Corp AI Content Pipeline — Configuration
+# Copy this file to config.local.yaml and fill in your credentials.
+# Never commit credentials to version control.
+
+api:
+  # OpenRouter API — https://openrouter.ai/keys
+  openrouter_api_key: "sk-or-REPLACE_WITH_YOUR_KEY"
+  openrouter_base_url: "https://openrouter.ai/api/v1"
+  openrouter_model: "deepseek/deepseek-chat"          # DeepSeek V3 via OpenRouter
+
+  # Social platform credentials (for analytics.py)
+  twitter:
+    api_key: "REPLACE_WITH_TWITTER_API_KEY"
+    api_secret: "REPLACE_WITH_TWITTER_API_SECRET"
+    access_token: "REPLACE_WITH_ACCESS_TOKEN"
+    access_token_secret: "REPLACE_WITH_ACCESS_TOKEN_SECRET"
+    bearer_token: "REPLACE_WITH_BEARER_TOKEN"
+
+  linkedin:
+    client_id: "REPLACE_WITH_LINKEDIN_CLIENT_ID"
+    client_secret: "REPLACE_WITH_LINKEDIN_CLIENT_SECRET"
+    access_token: "REPLACE_WITH_LINKEDIN_ACCESS_TOKEN"
+    organization_id: "REPLACE_WITH_ORGANIZATION_ID"
+
+  instagram:
+    access_token: "REPLACE_WITH_INSTAGRAM_ACCESS_TOKEN"
+    instagram_account_id: "REPLACE_WITH_INSTAGRAM_ACCOUNT_ID"
+
+content:
+  brand_name: "CLS Corp"
+  brand_voice: "authoritative yet approachable — data-driven insights with human warmth"
+  target_audience: "B2B decision-makers, CTOs, and startup founders in the AI/automation space"
+  industry: "AI & Automation"
+  default_language: "en"
+
+  # Controls what gets generated on each pipeline run
+  generate:
+    blog_summary: true
+    twitter_post: true
+    linkedin_post: true
+    instagram_post: true
+    seo_keywords: true
+    hashtags: true
+
+  constraints:
+    twitter_char_limit: 280
+    linkedin_char_limit: 3000
+    instagram_char_limit: 2200
+    min_seo_keywords: 5
+    max_seo_keywords: 15
+    min_hashtags: 5
+    max_hashtags: 30
+
+scheduling:
+  timezone: "America/New_York"
+
+  # Optimal posting windows (hour ranges in local time, 24h format)
+  optimal_windows:
+    twitter:
+      - { day: "weekday", hours: [8, 9, 12, 17, 18] }
+      - { day: "weekend", hours: [10, 11, 15] }
+    linkedin:
+      - { day: "weekday", hours: [7, 8, 12, 17] }
+      - { day: "weekend", hours: [] }           # LinkedIn performs poorly on weekends
+    instagram:
+      - { day: "weekday", hours: [11, 13, 19, 20] }
+      - { day: "weekend", hours: [10, 11, 14, 19] }
+
+  # How many days ahead to schedule
+  lookahead_days: 7
+
+  # Minimum gap between posts on the same platform (minutes)
+  min_gap_minutes: 60
+
+analytics:
+  # How far back to pull metrics (days)
+  lookback_days: 30
+
+  # Minimum engagement rate threshold to flag as "top performer"
+  top_performer_engagement_rate: 0.05   # 5 %
+
+  # Metrics collected per platform
+  metrics:
+    twitter: ["impressions", "likes", "retweets", "replies", "clicks", "engagement_rate"]
+    linkedin: ["impressions", "clicks", "likes", "comments", "shares", "engagement_rate"]
+    instagram: ["impressions", "reach", "likes", "comments", "saves", "engagement_rate"]
+
+logging:
+  level: "INFO"          # DEBUG | INFO | WARNING | ERROR
+  format: "rich"         # rich | json
+  file: "pipeline.log"   # set to null to disable file logging
