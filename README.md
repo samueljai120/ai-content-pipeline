@@ -1,8 +1,17 @@
-# CLS Corp AI Content Pipeline
+<p align="center">
+  <img src="assets/cls-logo.png" alt="CLS Corp" width="80" />
+</p>
 
-> **AI-powered content automation** — from a URL or topic to a fully scheduled, cross-platform content calendar in seconds.
+<h1 align="center">AI Content Pipeline</h1>
 
-Built by **[CLS Corp](https://clscorp.ai)** — AI & Automation Agency
+<p align="center">
+  <strong>AI-powered content automation</strong> — from a URL or topic to a fully scheduled, cross-platform content calendar in seconds.<br>
+  Built by <a href="https://github.com/samueljai120">CLS Corp</a> — AI & Automation Agency
+</p>
+
+---
+
+![Content Pipeline Demo](assets/demo-output.png)
 
 ---
 
