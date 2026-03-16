@@ -25,7 +25,7 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 import click
 import yaml
 from pydantic import BaseModel, Field
-from rich.calendar import Calendar  # noqa: F401  (available in rich extras)
+
 from rich.console import Console
 from rich.logging import RichHandler
 from rich.table import Table
